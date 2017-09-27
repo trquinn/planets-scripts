@@ -1,0 +1,7 @@
+s = pynbody.load('snapshot.std')
+p = pynbody.analysis.profile.Profile(s.g,min=.02,max=50)
+# CS assuming gamma = 5/3, molecular hydrogen (T < 60 Kelvin)
+# cs = np.sqrt((5.0/3.0) * pb.units.k * p['temp'] / 2.0 / pb.units.m_p)
+cs = np.sqrt((1.0) * pb.units.k * p['temp'] / 2.0 / pb.units.m_p)
+omega = np.sqrt((pb.units.G*s.s['mass'])/p['rbins']**3)
+Q = (cs*omega/(np.pi*pb.units.G*p['density'])).in_units('1.0')
